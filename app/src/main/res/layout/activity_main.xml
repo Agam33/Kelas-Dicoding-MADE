@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+
+  <com.google.android.material.tabs.TabLayout
+      android:id="@+id/tabs_main_activity"
+      app:tabIndicatorColor="@color/teal_700"
+      app:tabTextColor="@color/white"
+      android:background="@color/grey_700"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_below="@id/tabs_main_activity"
+        android:id="@+id/view_pager_main_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+  <View
+      android:id="@+id/circle"
+      android:visibility="invisible"
+      android:layout_alignEnd="@id/view_pager_main_activity"
+      android:layout_alignParentBottom="true"
+      android:layout_width="64dp"
+      android:layout_height="64dp"/>
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/fab_favorite"
+      style="@style/Widget.App.FloatingActionButton"
+      android:layout_width="64dp"
+      android:layout_height="64dp"
+      android:layout_alignEnd="@id/view_pager_main_activity"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginBottom="8dp"
+      android:contentDescription="@string/title_favorite"
+      android:src="@drawable/ic_favorite_24" />
+</RelativeLayout>

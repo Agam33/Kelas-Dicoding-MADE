@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/orange"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.tvshow.TvShowFragment">
+
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/linear_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:indeterminate="true" />
+
+        <TextView
+            android:fontFamily="@font/oxygen_bold"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
+            android:text="@string/txt_popular_tv_shows"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:elevation="4dp"
+            android:background="@color/grey_200"
+            android:id="@+id/rv_popular_tv"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:listitem="@layout/item_movies"
+            tools:itemCount="10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/oxygen_bold"
+            android:text="@string/txt_top_rated_tv_shows"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:elevation="4dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/grey_200"
+            android:id="@+id/rv_top_rated_tv"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:listitem="@layout/item_movies"
+            tools:itemCount="10" />
+
+        <TextView
+            android:fontFamily="@font/oxygen_bold"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:text="@string/txt_on_air_tv_shows"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:elevation="4dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/grey_200"
+            android:id="@+id/rv_on_air_tv"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:listitem="@layout/item_movies"
+            tools:itemCount="10" />
+
+        <TextView
+            android:fontFamily="@font/oxygen_bold"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:text="@string/txt_airing_today_tv_shows"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:elevation="4dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/grey_200"
+            android:id="@+id/rv_airing_today_tv"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:listitem="@layout/item_movies"
+            tools:itemCount="10" />
+    </LinearLayout>
+
+</ScrollView>

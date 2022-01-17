@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Movie Catalogue</string>
+    <string name="title_favorite">favorite</string>
+
+
+    <string name="txt_movies">Movies</string>
+    <string name="txt_tv_shows">Tv Shows</string>
+
+    <string name="txt_popular_movie">Popular </string>
+    <string name="txt_top_rated_movie">Top Rated </string>
+    <string name="txt_now_playing_movie">Now Playing</string>
+    <string name="txt_up_coming_movie">Up Coming </string>
+    <string name="txt_poster_img">poster_img</string>
+    <string name="txt_popular_tv_shows">Popular </string>
+    <string name="txt_top_rated_tv_shows">Top Rated </string>
+    <string name="txt_on_air_tv_shows">On Air </string>
+    <string name="txt_airing_today_tv_shows">Airing Today </string>
+    <string name="txt_title_popularity">Popularity</string>
+    <string name="txt_sample_popularity">10000</string>
+    <string name="txt_title_language">Language</string>
+    <string name="txt_sample_language">English</string>
+    <string name="txt_title_duration">Duration</string>
+    <string name="txt_sample_duration">97 minutes</string>
+    <string name="txt_sample_title_movie">sample title movie or tv show (2018)</string>
+    <string name="txt_sample_score">74%</string>
+    <string name="txt_score_title">User Score</string>
+    <string name="txt_title_release_date">Release Date</string>
+    <string name="txt_release_date">2021–09-30</string>
+
+    <string name="txt_no_connetion">No Connection</string>
+
+    <string name="movie_duration">%d H %d M </string>
+
+    <string name="user_score">%d%s</string>
+    <string name="get_image">%s%s</string>
+
+    <string name="detail">Detail</string>
+
+
+    <string name="txt_overview">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="txt_title_total_episode">Total Episode</string>
+    <string name="txt_total_episode">97</string>
+    <string name="txt_title_overview">Overview</string>
+
+
+</resources>
