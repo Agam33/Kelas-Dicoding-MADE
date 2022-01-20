@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.map
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CatalogueRepository(
+class FakeCatalogueRepository(
     private val remoteDataSource: RemoteDataSourceImpl,
     private val localDataSource: LocalDataSourceImpl
 ):CatalogueRepositoryImpl {

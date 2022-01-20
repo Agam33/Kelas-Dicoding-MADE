@@ -13,17 +13,17 @@ interface CatalogueUseCase {
     fun getTopRatedMovie(): Flow<Resource<List<CatalogueResult>>>
     fun getNowPlayingMovie(): Flow<Resource<List<CatalogueResult>>>
     fun getUpComingMovie(): Flow<Resource<List<CatalogueResult>>>
-    fun setFavoriteMovie(movie: Movie, newState: Boolean)
+    suspend fun setFavoriteMovie(movie: Movie, newState: Boolean)
     fun getMovieById(id: Int): Flow<Resource<Movie>>
 
-    fun  getPopularTvShow(): Flow<Resource<List<CatalogueResult>>>
-    fun  getTopRatedTvShow(): Flow<Resource<List<CatalogueResult>>>
-    fun  getOnAirTvShow(): Flow<Resource<List<CatalogueResult>>>
-    fun  getAiringTodayTvShow(): Flow<Resource<List<CatalogueResult>>>
-    fun setFavoriteTv(tvShow: Tv, newState: Boolean)
+    fun getPopularTvShow(): Flow<Resource<List<CatalogueResult>>>
+    fun getTopRatedTvShow(): Flow<Resource<List<CatalogueResult>>>
+    fun getOnAirTvShow(): Flow<Resource<List<CatalogueResult>>>
+    fun getAiringTodayTvShow(): Flow<Resource<List<CatalogueResult>>>
+    suspend fun setFavoriteTv(tvShow: Tv, newState: Boolean)
     fun getTvById(id: Int): Flow<Resource<Tv>>
 
-    fun setFavorite(favorite: Favorite)
-    fun deteleFavorite(favorite: Favorite)
+    suspend fun setFavorite(favorite: Favorite)
+    suspend fun deleteFavorite(favorite: Favorite)
     fun getFavorites(query: CatalogueType): Flow<List<Favorite>>
 }

@@ -5,6 +5,8 @@ buildscript {
         kotlin_version = '1.4.10'
         core_ktx_version = '1.1.0'
         constraint_version = '2.0.4'
+        app_compat = '1.4.1'
+        google_material = '1.5.0'
 
         junit_version = '4.13.1'
         espresso_version = '3.3.0'

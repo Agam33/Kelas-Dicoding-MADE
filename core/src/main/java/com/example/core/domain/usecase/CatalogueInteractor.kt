@@ -25,7 +25,7 @@ class CatalogueInteractor(
     override fun getUpComingMovie(): Flow<Resource<List<CatalogueResult>>> =
         catalogueRepository.getUpComingMovie()
 
-    override fun setFavoriteMovie(movie: Movie, newState: Boolean) =
+    override suspend fun setFavoriteMovie(movie: Movie, newState: Boolean) =
         catalogueRepository.setFavoriteMovie(movie, newState)
 
     override fun getMovieById(id: Int) = catalogueRepository.getMovieById(id)
@@ -42,16 +42,16 @@ class CatalogueInteractor(
     override fun getAiringTodayTvShow(): Flow<Resource<List<CatalogueResult>>> =
         catalogueRepository.getAiringTodayTv()
 
-    override fun setFavoriteTv(tvShow: Tv, newState: Boolean) =
+    override suspend fun setFavoriteTv(tvShow: Tv, newState: Boolean) =
         catalogueRepository.setFavoriteTv(tvShow, newState)
 
     override fun getTvById(id: Int) =
         catalogueRepository.getTvById(id)
 
-    override fun setFavorite(favorite: Favorite) =
+    override suspend fun setFavorite(favorite: Favorite) =
         catalogueRepository.setFavorite(favorite)
 
-    override fun deteleFavorite(favorite: Favorite) =
+    override suspend fun deleteFavorite(favorite: Favorite) =
         catalogueRepository.deleteFavorite(favorite)
 
     override fun getFavorites(query: CatalogueType): Flow<List<Favorite>> =

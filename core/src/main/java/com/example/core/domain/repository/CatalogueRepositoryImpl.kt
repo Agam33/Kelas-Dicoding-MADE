@@ -14,17 +14,17 @@ interface CatalogueRepositoryImpl {
     fun getTopRatedMovie(): Flow<Resource<List<CatalogueResult>>>
     fun getNowPlayingMovie(): Flow<Resource<List<CatalogueResult>>>
     fun getUpComingMovie(): Flow<Resource<List<CatalogueResult>>>
-    fun setFavoriteMovie(movie: Movie, newState: Boolean)
+    suspend fun setFavoriteMovie(movie: Movie, newState: Boolean)
     fun getMovieById(id: Int): Flow<Resource<Movie>>
 
     fun getPopularTv(): Flow<Resource<List<CatalogueResult>>>
     fun getTopRatedTv(): Flow<Resource<List<CatalogueResult>>>
     fun getOnAirTv(): Flow<Resource<List<CatalogueResult>>>
     fun getAiringTodayTv(): Flow<Resource<List<CatalogueResult>>>
-    fun setFavoriteTv(tv: Tv, newState: Boolean)
+    suspend fun setFavoriteTv(tv: Tv, newState: Boolean)
     fun getTvById(id: Int): Flow<Resource<Tv>>
 
-    fun setFavorite(favorite: Favorite)
-    fun deleteFavorite(favorite: Favorite)
+    suspend fun setFavorite(favorite: Favorite)
+    suspend fun deleteFavorite(favorite: Favorite)
     fun getFavoriteMovie(filter: CatalogueType): Flow<List<Favorite>>
 }

@@ -59,9 +59,9 @@ class LocalDataSource(
     override suspend fun insertDetailTv(tv: TvEntity) =
         catalogueDao.insertDetailTv(tv)
 
-    override suspend fun setFavoriteTv(tvEntity: TvEntity, newState: Boolean) {
-        tvEntity.isFavorite = newState
-        catalogueDao.updateTvEntity(tvEntity)
+    override suspend fun setFavoriteTv(tv: TvEntity, newState: Boolean) {
+        tv.isFavorite = newState
+        catalogueDao.updateTvEntity(tv)
     }
 
     override fun getPopularTv(): Flow<List<PopularTvEntities>> =
