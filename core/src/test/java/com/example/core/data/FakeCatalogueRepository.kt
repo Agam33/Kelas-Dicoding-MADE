@@ -1,8 +1,8 @@
 package com.example.core.data
 
-import com.example.core.data.source.local.LocalDataSourceImpl
+import com.example.core.data.source.local.LocalDataSource
 import com.example.core.data.source.local.entity.*
-import com.example.core.data.source.remote.RemoteDataSourceImpl
+import com.example.core.data.source.remote.RemoteDataSource
 import com.example.core.data.source.remote.network.ApiResponse
 import com.example.core.data.source.remote.response.DetailMovieResponse
 import com.example.core.data.source.remote.response.DetailTvResponse
@@ -19,8 +19,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class FakeCatalogueRepository(
-    private val remoteDataSource: RemoteDataSourceImpl,
-    private val localDataSource: LocalDataSourceImpl
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource
 ):CatalogueRepositoryImpl {
 
     override fun getPopularMovie(): Flow<Resource<List<CatalogueResult>>> =

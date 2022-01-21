@@ -1,43 +1,49 @@
 package com.example.core.data
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.core.data.source.local.LocalDataSource
+import com.example.core.data.source.local.LocalDataSourceImpl
+import com.example.core.data.source.local.entity.PopularMovieEntities
 import com.example.core.data.source.remote.RemoteDataSource
+import com.example.core.data.source.remote.RemoteDataSourceImpl
 import com.example.core.utils.DataDummy
-import com.nhaarman.mockitokotlin2.verify
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
-import org.junit.Rule
+import org.junit.Before
 import org.junit.Test
-import org.junit.rules.TestRule
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.*
+import org.mockito.junit.MockitoJUnitRunner
 
+@RunWith(MockitoJUnitRunner::class)
 class CatalogueRepositoryTest {
 
-    @Rule
-    @JvmField
-    val rule: TestRule = InstantTaskExecutorRule()
+    @Mock private lateinit var remoteDataSource: RemoteDataSource
 
-    private val remoteDataSource = mock(RemoteDataSource::class.java)
-    private val localDataSource = mock(LocalDataSource::class.java)
+    @Mock private lateinit var localDataSource: LocalDataSource
 
-    private val catalogueRepository = FakeCatalogueRepository(remoteDataSource, localDataSource)
+    private lateinit var catalogueRepository: FakeCatalogueRepository
 
     private val expectedSize = 4
 
+    @Before
+    fun setup() {
+        catalogueRepository = FakeCatalogueRepository(remoteDataSource, localDataSource)
+    }
+
     @Test
-    fun `Get Popular Movies, should be success`() = runBlocking {
+    fun `Get Popular Movies`() {
         val movies = DataDummy.popularMovies()
         `when`(localDataSource.getPopularMovies()).thenReturn(movies)
-        catalogueRepository.getPopularMovie()
 
-        val movieEntities = DataDummy.popularMovies()
+        val movieEntities = catalogueRepository.getPopularMovie()
+
         verify(localDataSource).getPopularMovies()
         assertNotNull(movieEntities)
-        assertEquals(expectedSize, movieEntities.first().size)
+
     }
 
     @Test
