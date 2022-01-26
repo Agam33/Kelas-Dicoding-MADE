@@ -14,18 +14,18 @@
         android:theme="@style/Theme.MyApplication">
         <activity
             android:name=".ui.detail.DetailTvShowActivity"
-            android:theme="@style/Theme.custom_theme_1"
+            android:theme="@style/Theme.detail_theme"
             android:parentActivityName=".ui.MainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.detail.DetailMovieActivity"
             android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/Theme.custom_theme_1"
+            android:theme="@style/Theme.detail_theme"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.custom_theme_1">
+            android:theme="@style/Theme.main_theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

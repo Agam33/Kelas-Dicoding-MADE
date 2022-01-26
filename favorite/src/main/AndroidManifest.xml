@@ -15,10 +15,9 @@
 
     <application>
         <activity
-            android:theme="@style/Theme.custom_theme_1"
+            android:theme="@style/Theme.favorite_theme"
             android:name=".FavoriteActivity"
             android:exported="false" >
-
         </activity>
     </application>
 

@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Kuliah/DicodingCourse/Android/MADE/submission akhir/submission-2/app/src/main/res/layout/activity_detail_movie.xml" value="0.10625" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/MADE/submission akhir/submission-2/app/src/main/res/layout/activity_detail_tv_show.xml" value="0.10625" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/MADE/submission akhir/submission-2/app/src/main/res/layout/fragment_movie.xml" value="0.10625" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/MADE/submission akhir/submission-2/app/src/main/res/layout/fragment_tv_show.xml" value="0.10625" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/MADE/submission akhir/submission-2/app/src/main/res/layout/item_movies.xml" value="0.10625" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/MADE/submission akhir/submission-2/app/src/main/res/layout/item_tv_show.xml" value="0.10625" />
         <entry key="..\:/Kuliah/DicodingCourse/Android/MADE/submission akhir/submission-2/favorite/src/main/res/layout/activity_favorite.xml" value="0.1" />
         <entry key="..\:/Kuliah/DicodingCourse/Android/MADE/submission akhir/submission-2/favorite/src/main/res/layout/item_favorite.xml" value="0.1" />
       </map>
