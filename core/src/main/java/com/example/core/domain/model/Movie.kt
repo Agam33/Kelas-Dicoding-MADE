@@ -2,7 +2,6 @@ package com.example.core.domain.model
 
 import com.example.core.utils.CatalogueType
 
-
 data class Movie(
     var id: Int = 0,
     var name: String="",

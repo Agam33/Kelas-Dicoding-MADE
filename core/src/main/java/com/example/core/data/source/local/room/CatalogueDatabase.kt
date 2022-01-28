@@ -6,16 +6,6 @@ import com.example.core.data.source.local.entity.*
 
 @Database(
     entities = [
-        MovieEntity::class,
-        TvEntity::class,
-        PopularMovieEntities::class,
-        PopularTvEntities::class,
-        TopRatedTvEntities::class,
-        TopRatedMovieEntities::class,
-        NowPlayingMovieEntities::class,
-        UpComingMovieEntities::class,
-        OnAirTvEntities::class,
-        AiringTodayTvEntities::class,
         FavoriteEntities::class
     ],
     version = 1,

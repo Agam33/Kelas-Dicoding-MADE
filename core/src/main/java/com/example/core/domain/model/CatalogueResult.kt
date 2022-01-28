@@ -1,6 +1,6 @@
 package com.example.core.domain.model
 
 data class CatalogueResult(
-    val id: Int,
-    val posterPath: String,
+    var id: Int = 0,
+    var posterPath: String = "",
 )

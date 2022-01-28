@@ -41,143 +41,187 @@ class TvShowFragment : Fragment() {
     }
 
     private fun airingTodayTvShows() {
-        tvShowViewModel.airingTodayTvShow.observe(viewLifecycleOwner, { airingTodayTvShow ->
-            when(airingTodayTvShow) {
+        tvShowViewModel.airingTodayTvShow.observe(viewLifecycleOwner) { airingTodayTvShow ->
+            when (airingTodayTvShow) {
                 is Resource.Success -> {
                     binding?.linearProgressBar?.visibility = View.GONE
-                     tvShowAdapter = TvAdapter()
+                    tvShowAdapter = TvAdapter()
                     airingTodayTvShow.data?.let {
                         tvShowAdapter.addList(it)
-                        tvShowAdapter.setOnItemClickCallback(object: TvAdapter.OnItemClickCallback {
+                        tvShowAdapter.setOnItemClickCallback(object :
+                            TvAdapter.OnItemClickCallback {
 
                             override fun detailTv(id: Int) {
-                                startActivity(Intent(requireContext(), DetailTvShowActivity::class.java).apply {
-                                    putExtra(TV_SHOW_ID, id)
-                                })
+                                startActivity(
+                                    Intent(
+                                        requireContext(),
+                                        DetailTvShowActivity::class.java
+                                    ).apply {
+                                        putExtra(TV_SHOW_ID, id)
+                                    })
                             }
                         })
                         binding?.rvAiringTodayTv?.let { rv ->
                             rv.adapter = tvShowAdapter
-                            rv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                            rv.layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
                             rv.setHasFixedSize(true)
                         }
                     }
                 }
-                is Resource.Loading ->  binding?.linearProgressBar?.visibility = View.VISIBLE
-                is Resource.Error-> {
+                is Resource.Loading -> binding?.linearProgressBar?.visibility = View.VISIBLE
+                is Resource.Error -> {
                     airingTodayTvShow.message?.let {
-                        Snackbar.make(this.requireView(),
-                            it, Snackbar.LENGTH_LONG)
+                        Snackbar.make(
+                            this.requireView(),
+                            it, Snackbar.LENGTH_LONG
+                        )
                     }?.show()
                 }
                 else -> {}
             }
-        })
+        }
     }
 
     private fun onAirTvShows() {
-        tvShowViewModel.onAirTvShows.observe(viewLifecycleOwner, { onAirTvShows ->
-            when(onAirTvShows) {
+        tvShowViewModel.onAirTvShows.observe(viewLifecycleOwner) { onAirTvShows ->
+            when (onAirTvShows) {
                 is Resource.Success -> {
                     binding?.linearProgressBar?.visibility = View.GONE
                     tvShowAdapter = TvAdapter()
                     onAirTvShows.data?.let {
                         tvShowAdapter.addList(it)
-                        tvShowAdapter.setOnItemClickCallback(object: TvAdapter.OnItemClickCallback {
+                        tvShowAdapter.setOnItemClickCallback(object :
+                            TvAdapter.OnItemClickCallback {
 
                             override fun detailTv(id: Int) {
-                                startActivity(Intent(requireContext(), DetailTvShowActivity::class.java).apply {
-                                    putExtra(TV_SHOW_ID, id)
-                                })
+                                startActivity(
+                                    Intent(
+                                        requireContext(),
+                                        DetailTvShowActivity::class.java
+                                    ).apply {
+                                        putExtra(TV_SHOW_ID, id)
+                                    })
                             }
                         })
                         binding?.rvOnAirTv?.let { rv ->
                             rv.adapter = tvShowAdapter
-                            rv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                            rv.layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
                             rv.setHasFixedSize(true)
                         }
                     }
                 }
-                is Resource.Loading ->  binding?.linearProgressBar?.visibility = View.VISIBLE
-                is Resource.Error-> {
+                is Resource.Loading -> binding?.linearProgressBar?.visibility = View.VISIBLE
+                is Resource.Error -> {
                     onAirTvShows.message?.let {
-                        Snackbar.make(this.requireView(),
-                            it, Snackbar.LENGTH_LONG)
+                        Snackbar.make(
+                            this.requireView(),
+                            it, Snackbar.LENGTH_LONG
+                        )
                     }?.show()
                 }
                 else -> {}
             }
-        })
+        }
     }
 
     private fun topRatedTvShows() {
-        tvShowViewModel.topRatedTvShows.observe(viewLifecycleOwner, { topRatedTvShows ->
-            when(topRatedTvShows) {
+        tvShowViewModel.topRatedTvShows.observe(viewLifecycleOwner) { topRatedTvShows ->
+            when (topRatedTvShows) {
                 is Resource.Success -> {
                     binding?.linearProgressBar?.visibility = View.GONE
                     tvShowAdapter = TvAdapter()
                     topRatedTvShows.data?.let {
                         tvShowAdapter.addList(it)
-                        tvShowAdapter.setOnItemClickCallback(object: TvAdapter.OnItemClickCallback {
+                        tvShowAdapter.setOnItemClickCallback(object :
+                            TvAdapter.OnItemClickCallback {
 
                             override fun detailTv(id: Int) {
-                                startActivity(Intent(requireContext(), DetailTvShowActivity::class.java).apply {
-                                    putExtra(TV_SHOW_ID, id)
-                                })
+                                startActivity(
+                                    Intent(
+                                        requireContext(),
+                                        DetailTvShowActivity::class.java
+                                    ).apply {
+                                        putExtra(TV_SHOW_ID, id)
+                                    })
                             }
                         })
                         binding?.rvTopRatedTv?.let { rv ->
                             rv.adapter = tvShowAdapter
-                            rv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                            rv.layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
                             rv.setHasFixedSize(true)
                         }
                     }
                 }
-                is Resource.Loading ->  binding?.linearProgressBar?.visibility = View.VISIBLE
-                is Resource.Error-> {
+                is Resource.Loading -> binding?.linearProgressBar?.visibility = View.VISIBLE
+                is Resource.Error -> {
                     topRatedTvShows.message?.let {
-                        Snackbar.make(this.requireView(),
-                            it, Snackbar.LENGTH_LONG)
+                        Snackbar.make(
+                            this.requireView(),
+                            it, Snackbar.LENGTH_LONG
+                        )
                     }?.show()
                 }
                 else -> {}
             }
-        })
+        }
     }
 
     private fun popularTvShows() {
-        tvShowViewModel.popularTvShows.observe(viewLifecycleOwner, { popularTvShows ->
-            when(popularTvShows) {
+        tvShowViewModel.popularTvShows.observe(viewLifecycleOwner) { popularTvShows ->
+            when (popularTvShows) {
                 is Resource.Success -> {
                     binding?.linearProgressBar?.visibility = View.GONE
                     tvShowAdapter = TvAdapter()
                     popularTvShows.data?.let {
                         tvShowAdapter.addList(it)
-                        tvShowAdapter.setOnItemClickCallback(object: TvAdapter.OnItemClickCallback {
+                        tvShowAdapter.setOnItemClickCallback(object :
+                            TvAdapter.OnItemClickCallback {
 
                             override fun detailTv(id: Int) {
-                                startActivity(Intent(requireContext(), DetailTvShowActivity::class.java).apply {
-                                    putExtra(TV_SHOW_ID, id)
-                                })
+                                startActivity(
+                                    Intent(
+                                        requireContext(),
+                                        DetailTvShowActivity::class.java
+                                    ).apply {
+                                        putExtra(TV_SHOW_ID, id)
+                                    })
                             }
                         })
                         binding?.rvPopularTv?.let { rv ->
                             rv.adapter = tvShowAdapter
-                            rv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                            rv.layoutManager = LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
                             rv.setHasFixedSize(true)
                         }
                     }
                 }
-                is Resource.Loading ->  binding?.linearProgressBar?.visibility = View.VISIBLE
-                is Resource.Error-> {
+                is Resource.Loading -> binding?.linearProgressBar?.visibility = View.VISIBLE
+                is Resource.Error -> {
                     popularTvShows.message?.let {
-                        Snackbar.make(this.requireView(),
-                            it, Snackbar.LENGTH_LONG)
+                        Snackbar.make(
+                            this.requireView(),
+                            it, Snackbar.LENGTH_LONG
+                        )
                     }?.show()
                 }
                 else -> {}
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

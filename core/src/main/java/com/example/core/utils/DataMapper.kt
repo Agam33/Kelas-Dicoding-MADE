@@ -1,107 +1,59 @@
 package com.example.core.utils
 
 import com.example.core.data.source.local.entity.FavoriteEntities
-import com.example.core.data.source.local.entity.MovieEntity
-import com.example.core.data.source.local.entity.TvEntity
-
 import com.example.core.data.source.remote.response.DetailMovieResponse
 import com.example.core.data.source.remote.response.DetailTvResponse
-import com.example.core.domain.model.Favorite
-import com.example.core.domain.model.Movie
-import com.example.core.domain.model.Tv
+import com.example.core.data.source.remote.response.ResultResponse
+import com.example.core.domain.model.*
 
 object DataMapper {
 
-    fun mapMovieEntityToDomain(movieEntity: MovieEntity?): Movie {
-        if(movieEntity == null) return Movie()
+    fun mapResultResponseToDomain(resultResponse: ResultResponse?): CatalogueResult {
+        if(resultResponse == null) return CatalogueResult()
+        return CatalogueResult(
+            resultResponse.id,
+            resultResponse.posterPath
+        )
+    }
+
+    fun mapDetailMovieResponseToDomain(movie: DetailMovieResponse?): Movie {
+        if(movie == null) return Movie()
         return Movie (
-            movieEntity.id,
-            movieEntity.name,
-            movieEntity.imgUrl,
-            movieEntity.runtime,
-            movieEntity.language,
-            movieEntity.releaseDate,
-            movieEntity.overview,
-            movieEntity.popularity,
-            movieEntity.voteAverage,
-            movieEntity.isFavorite,
-            movieEntity.catalogueType
+            movie.id,
+            movie.name,
+            movie.imgUrl,
+            movie.runtime,
+            if(movie.language.isEmpty()) "" else movie.language[0].englishName,
+            movie.releaseDate,
+            movie.overview,
+            movie.popularity,
+            movie.voteAverage,
         )
     }
 
-    fun mapTvEntityToDomain(tvEntity: TvEntity?): Tv {
-        if(tvEntity == null) return Tv()
+    fun mapDetailTvResponseToDomain(tv: DetailTvResponse?): Tv {
+        if(tv == null) return Tv()
         return Tv (
-            tvEntity.id,
-            tvEntity.name,
-            tvEntity.imgUrl,
-            tvEntity.language,
-            tvEntity.totalEpisode,
-            tvEntity.overview,
-            tvEntity.popularity,
-            tvEntity.voteAverage,
-            tvEntity.isFavorite,
-            tvEntity.catalogueType
+            tv.id,
+            tv.name,
+            tv.imgUrl,
+            if(tv.language.isEmpty()) "" else tv.language[0].englishName,
+            tv.episode,
+            tv.overview,
+            tv.popularity,
+            tv.voteAverage,
         )
     }
 
-
-    fun mapDetailMovieResponseToEntity(movieResponse: DetailMovieResponse) = MovieEntity (
-        movieResponse.id,
-        movieResponse.name,
-        movieResponse.imgUrl,
-        movieResponse.runtime,
-        if(movieResponse.language.isEmpty()) "" else movieResponse.language[0].englishName,
-        movieResponse.releaseDate,
-        movieResponse.overview,
-        movieResponse.popularity,
-        movieResponse.voteAverage
-    )
-
-    fun mapDetailTvResponseToEntity(tvResponse: DetailTvResponse) =  TvEntity(
-        tvResponse.id,
-        tvResponse.name,
-        tvResponse.imgUrl,
-        tvResponse.episode,
-        if(tvResponse.language.isEmpty()) "" else tvResponse.language[0].englishName,
-        tvResponse.overview,
-        tvResponse.popularity,
-        tvResponse.voteAverage,
-    )
-
-    fun mapMovieDomainToEntity(movie: Movie) =  MovieEntity (
-        movie.id,
-        movie.name,
-        movie.imgUrl,
-        movie.runtime,
-        movie.language,
-        movie.releaseDate,
-        movie.overview,
-        movie.popularity,
-        movie.voteAverage,
-        movie.isFavorite,
-
-    )
-
-    fun mapTvDomainToEntity(tvShow: Tv) = TvEntity(
-        tvShow.id,
-        tvShow.name,
-        tvShow.imgUrl,
-        tvShow.totalEpisode,
-        tvShow.language,
-        tvShow.overview,
-        tvShow.popularity,
-        tvShow.voteAverage,
-        tvShow.isFavorite
-    )
-
-    fun mapFavoriteEntityToDomain(favorite: FavoriteEntities) =
-        Favorite(
+    fun mapFavoriteEntityToDomain(favorite: FavoriteEntities?): Favorite {
+        if (favorite == null) return Favorite()
+        return Favorite(
             favorite.id,
             favorite.posterPath,
             favorite.isFavorite,
             favorite.catalogueType
         )
+    }
 
     fun mapFavoriteDomainToEntity(favorite: Favorite) = FavoriteEntities(
         favorite.id,

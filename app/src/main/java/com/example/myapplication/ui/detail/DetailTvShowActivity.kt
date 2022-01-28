@@ -21,6 +21,8 @@ class DetailTvShowActivity : AppCompatActivity() {
 
     private val detailViewModel: DetailViewModel by viewModel()
 
+    private lateinit var favorite: Favorite
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailTvShowBinding.inflate(layoutInflater)
@@ -31,8 +33,11 @@ class DetailTvShowActivity : AppCompatActivity() {
         supportActionBar?.title = getString(R.string.detail)
 
         val id = intent.getIntExtra(TV_SHOW_ID, 0 )
-        detailViewModel.getTvById(id).observe(this, { tvShow ->
-            when(tvShow) {
+        detailViewModel.isFavorite(id).observe(this@DetailTvShowActivity) { isFavorite ->
+            setFavorite(isFavorite.isFavorite)
+        }
+        detailViewModel.getTvById(id).observe(this) { tvShow ->
+            when (tvShow) {
                 is Resource.Success -> {
                     binding.topLayout.visibility = View.VISIBLE
                     binding.btmLayout.visibility = View.VISIBLE
@@ -43,13 +48,14 @@ class DetailTvShowActivity : AppCompatActivity() {
                     binding.btmLayout.visibility = View.GONE
                 }
                 is Resource.Error -> {
-                    Toast.makeText(this@DetailTvShowActivity,
-                        getString(R.string.txt_no_connetion) +" -> "+ tvShow.message,
+                    Toast.makeText(
+                        this@DetailTvShowActivity,
+                        getString(R.string.txt_no_connetion) + " -> " + tvShow.message,
                         Toast.LENGTH_LONG
                     ).show()
                 }
             }
-        })
+        }
     }
 
     private fun setupUI(data: Tv?) = with(binding) {
@@ -59,7 +65,6 @@ class DetailTvShowActivity : AppCompatActivity() {
             val episodes = data.totalEpisode.toString()
             val userScore = data.voteAverage * 10
             val getImg = String.format(getString(R.string.get_image), GET_IMAGE, data.imgUrl)
-            val isFavorite = data.isFavorite
 
             imgMovie.loadImage(getImg)
             tvTitleMovie.text = data.name
@@ -67,18 +72,18 @@ class DetailTvShowActivity : AppCompatActivity() {
             tvEpisode.text = episodes
             tvUserScore.text = String.format(getString(R.string.user_score), userScore.toInt(), "%")
             tvOverview.text = data.overview
-            fabFavorite.imageTintList = getColorFloatingButton(isFavorite)
 
-            val favorite =  Favorite(data.id, data.imgUrl,true, data.catalogueType.ordinal)
+            favorite = Favorite(data.id, data.imgUrl,true, data.catalogueType.ordinal)
+        }
+    }
 
-            fabFavorite.setOnClickListener {
-                if(isFavorite) {
-                    detailViewModel.deleteFavorite(favorite)
-                } else {
-                    detailViewModel.setFavorite(favorite)
-                }
-                detailViewModel.setFavoriteTv(data)
-                fabFavorite.imageTintList = getColorFloatingButton(true)
+    private fun setFavorite(isFavorite: Boolean) {
+        binding.fabFavorite.imageTintList = getColorFloatingButton(isFavorite)
+        binding.fabFavorite.setOnClickListener {
+            if(isFavorite) {
+                detailViewModel.deleteFavorite(favorite)
+            } else {
+                detailViewModel.setFavorite(favorite)
             }
         }
     }

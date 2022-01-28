@@ -21,6 +21,8 @@ class DetailMovieActivity : AppCompatActivity() {
 
     private val detailViewModel: DetailViewModel by viewModel()
 
+    private lateinit var favorite: Favorite
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMovieBinding.inflate(layoutInflater)
@@ -31,8 +33,11 @@ class DetailMovieActivity : AppCompatActivity() {
         supportActionBar?.title = getString(R.string.detail)
 
         val id = intent.getIntExtra(MOVIE_ID, 0)
-        detailViewModel.getMovieById(id).observe(this, { movie ->
-            when(movie) {
+        detailViewModel.isFavorite(id).observe(this@DetailMovieActivity) { isFavorite ->
+            setFavorite(isFavorite.isFavorite)
+        }
+        detailViewModel.getMovieById(id).observe(this) { movie ->
+            when (movie) {
                 is Resource.Success -> {
                     binding.topLayout.visibility = View.VISIBLE
                     binding.btmLayout.visibility = View.VISIBLE
@@ -44,22 +49,22 @@ class DetailMovieActivity : AppCompatActivity() {
                     binding.btmLayout.visibility = View.GONE
                 }
                 is Resource.Error -> {
-                   Toast.makeText(this@DetailMovieActivity,
-                       getString(R.string.txt_no_connetion) +" -> "+ movie.message,
-                       Toast.LENGTH_LONG
-                   ).show()
+                    Toast.makeText(
+                        this@DetailMovieActivity,
+                        getString(R.string.txt_no_connetion) + " -> " + movie.message,
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
-        })
+        }
     }
 
-    private fun setupUI(data: Movie?) = with(binding){
+    private fun setupUI(data: Movie?) = with(binding) {
         if(data != null) {
             val hours = data.runtime / 60
             val minutes = data.runtime % 60
             val vote = data.voteAverage * 10
             val getImg = String.format(getString(R.string.get_image), GET_IMAGE, data.imgUrl)
-            val isFavorite = data.isFavorite
 
             popularity.text = data.popularity.toInt().toString()
             tvTitleMovie.text = data.name
@@ -69,17 +74,19 @@ class DetailMovieActivity : AppCompatActivity() {
             tvReleaseDate.text = data.releaseDate
             tvUserScore.text = String.format(getString(R.string.user_score), vote.toInt(),"%")
             tvOverview.text = data.overview
-            fabFavorite.imageTintList = getColorFloatingButton(isFavorite)
 
-            val favorite =  Favorite(data.id, data.imgUrl,true, data.catalogueType.ordinal)
+            favorite = Favorite(data.id, data.imgUrl,true, data.catalogueType.ordinal)
 
-            fabFavorite.setOnClickListener {
-                if(isFavorite) {
-                    detailViewModel.deleteFavorite(favorite)
-                } else {
-                    detailViewModel.setFavorite(favorite)
-                }
-                detailViewModel.setFavoriteMovie(data)
+        }
+    }
+
+    private fun setFavorite(isFavorite: Boolean) {
+        binding.fabFavorite.imageTintList = getColorFloatingButton(isFavorite)
+        binding.fabFavorite.setOnClickListener {
+            if(isFavorite) {
+                detailViewModel.deleteFavorite(favorite)
+            } else {
+                detailViewModel.setFavorite(favorite)
             }
         }
     }

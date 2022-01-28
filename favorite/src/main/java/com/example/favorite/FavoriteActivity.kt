@@ -45,8 +45,8 @@ class FavoriteActivity : AppCompatActivity(), FavoriteAdapter.OnItemClickCallbac
             else -> {2}
         }
 
-        favoriteViewModel.favorites.observe(this, {
-            if(it.isEmpty()) {
+        favoriteViewModel.favorites.observe(this) {
+            if (it.isEmpty()) {
                 binding.tvNoFavorites.visibility = View.VISIBLE
                 binding.rvFavorite.visibility = View.GONE
             } else {
@@ -54,7 +54,7 @@ class FavoriteActivity : AppCompatActivity(), FavoriteAdapter.OnItemClickCallbac
                 binding.tvNoFavorites.visibility = View.GONE
                 binding.rvFavorite.visibility = View.VISIBLE
             }
-        })
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

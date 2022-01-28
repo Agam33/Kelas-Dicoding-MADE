@@ -2,8 +2,6 @@ package com.example.core.domain.usecase
 
 import com.example.core.domain.model.CatalogueResult
 import com.example.core.domain.model.Favorite
-import com.example.core.domain.model.Movie
-import com.example.core.domain.model.Tv
 import com.example.core.domain.repository.CatalogueRepositoryImpl
 import com.example.core.utils.CatalogueType
 import com.example.core.utils.Resource
@@ -25,9 +23,6 @@ class CatalogueInteractor(
     override fun getUpComingMovie(): Flow<Resource<List<CatalogueResult>>> =
         catalogueRepository.getUpComingMovie()
 
-    override suspend fun setFavoriteMovie(movie: Movie, newState: Boolean) =
-        catalogueRepository.setFavoriteMovie(movie, newState)
-
     override fun getMovieById(id: Int) = catalogueRepository.getMovieById(id)
 
     override fun getPopularTvShow(): Flow<Resource<List<CatalogueResult>>> =
@@ -42,9 +37,6 @@ class CatalogueInteractor(
     override fun getAiringTodayTvShow(): Flow<Resource<List<CatalogueResult>>> =
         catalogueRepository.getAiringTodayTv()
 
-    override suspend fun setFavoriteTv(tvShow: Tv, newState: Boolean) =
-        catalogueRepository.setFavoriteTv(tvShow, newState)
-
     override fun getTvById(id: Int) =
         catalogueRepository.getTvById(id)
 
@@ -56,5 +48,8 @@ class CatalogueInteractor(
 
     override fun getFavorites(query: CatalogueType): Flow<List<Favorite>> =
         catalogueRepository.getFavoriteMovie(query)
+
+    override fun checkFavorite(id: Int): Flow<Favorite> =
+        catalogueRepository.checkFavorite(id)
 
 }

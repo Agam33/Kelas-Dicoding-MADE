@@ -5,4 +5,5 @@
     <string name="tv">Tv Show</string>
     <string name="all">All</string>
     <string name="filter">filter</string>
+    <string name="txt_no_favorites">NO FAVORITES</string>
 </resources>
